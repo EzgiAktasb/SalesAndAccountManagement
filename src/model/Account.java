@@ -28,7 +28,10 @@ public abstract class Account {
     }
     
     
-    public abstract void updateBalance(double amount);
+    public void updateBalance(double amount) {
+    	this.balance = this.balance - amount;
+    	
+    }
 
     public void displayAccountInfo() {
         System.out.println("Account ID: " + accountID);

@@ -59,9 +59,8 @@ public class Product implements Calculable{
 
 		public void reduceStock(int quantity2) {
 			// TODO Auto-generated method stub
-			
-			
-			//ahmet can bu methodu yazar mısın ? 
+			this.quantity = this.quantity - quantity2;
+		 
 		}
 
 	    
