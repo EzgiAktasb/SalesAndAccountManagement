@@ -36,7 +36,7 @@ public class Transaction {
         System.out.println("Quantity: " + quantity);
         System.out.println("Date: " + date);
         System.out.println("Total Amount: " + calculateTransactionAmount());
-        System.out.println("----------------------------------");
+        System.out.println("------------------------------------");
     }
 }
 
