@@ -55,6 +55,15 @@ public class Product implements Calculable{
 	        return price * quantity;
 	    }
 
+
+
+		public void reduceStock(int quantity2) {
+			// TODO Auto-generated method stub
+			
+			
+			//ahmet can bu methodu yazar mısın ? 
+		}
+
 	    
 
 
