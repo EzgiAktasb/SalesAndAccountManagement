@@ -2,7 +2,7 @@ package model;
 
 import java.time.LocalDate;
 
-public class Transaction {
+public class Transaction{
 
     private String transactionID;
     private Product product;

@@ -1,6 +1,6 @@
 package model;
 
-public abstract class Account {
+public abstract class Account{
 
 	protected String accountID;
     protected double balance;
