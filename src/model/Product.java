@@ -63,13 +63,12 @@ public class Product implements Calculable{
 		 
 		}
 
-	    public void displayProduct() {
-	        System.out.println("Product ID: " + productID);
-	        System.out.println("Product: " + name); 
-	        System.out.println("Quantity: " + quantity);
-	        System.out.println("Price: " + price);
+	    public String displayProduct() {
+	    	
+	    	String temp = "Product ID: " + productID + "\n" + "Product: " + name + "\n" + "Quantity: "  + quantity + "\n" + "Price: " + price + "\n" + "---------------------------------------";
+	    	return temp;
 
-	        System.out.println("---------------------------------------");
+	        
 	    }
 
 

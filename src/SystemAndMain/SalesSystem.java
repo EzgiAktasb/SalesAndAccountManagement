@@ -29,7 +29,7 @@ public class SalesSystem {
     }
 
     public void addAccount(Account a) {
-        accounts.put(a.getAccountId(), a);
+        accounts.put(a.getAccountID(), a);
     }
 
     public void displayAllProducts() {
