@@ -46,13 +46,13 @@ public class SalesSystem {
 
     public void displayAllAccounts() {
         for (Account a : accounts.values()) {
-            a.displayAccount();
+            a.displayAccountInfo();
         }
     }
 
     public Product searchProductById(String id) {
         for (Product p : product) {
-            if (p.getProductId().equals(id)) {
+            if (p.getProductID().equals(id)) {
                 return p;
             }
         }

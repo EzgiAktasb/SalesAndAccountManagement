@@ -29,7 +29,7 @@ public abstract class Account{
     
     
     public void updateBalance(double amount) {
-    	this.balance = this.balance - amount;
+    	this.balance = this.balance + amount;
     	
     }
 
