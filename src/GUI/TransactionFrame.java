@@ -2,6 +2,7 @@ package GUI;
 import javax.swing.*;
 
 import SystemAndMain.SalesSystem;
+import model.Account;
 import model.Product;
 
 import java.awt.*;
