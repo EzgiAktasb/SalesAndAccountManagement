@@ -7,6 +7,10 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import model.Account;
+import model.Product;
+import model.Transaction;
+
 public class SalesSystem {
 
     private static ArrayList<Product> product;
@@ -17,6 +21,18 @@ public class SalesSystem {
         product = new ArrayList<>();
         transactions = new HashSet<>();
         accounts = new HashMap<>();
+    }
+    
+    public static ArrayList<Product> getProducts() {
+        return product;
+    }
+
+    public static Set<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public static Map<String, Account> getAccounts() {
+        return accounts;
     }
 
     public static void addProduct(Product p) {
@@ -64,7 +80,7 @@ public class SalesSystem {
     }
 
     public static boolean deleteProduct(String id) {
-        return product.removeIf(p -> p.getProductId().equals(id));
+        return product.removeIf(p -> p.getProductID().equals(id));
     }
 
     public static boolean deleteAccount(String id) {

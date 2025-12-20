@@ -1,42 +1,135 @@
 package GUI;
 
-import java.awt.EventQueue;
+import javax.swing.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import SystemAndMain.SalesSystem;
+import model.Account;
+import model.Product;
+import model.Transaction;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.time.LocalDate;
 
 public class TransactionFrame extends JFrame {
+    private SalesSystem salesSystem;
 
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+    private JTextField txtTransactionID, txtQuantity;
+    private JComboBox<String> cmbProduct, cmbAccount;
+    private JTextArea txtDisplay;
+    private JButton btnAdd, btnDisplay, btnCalculate;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TransactionFrame frame = new TransactionFrame();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+    public TransactionFrame(SalesSystem system) {
+        this.salesSystem = system;
+        setTitle("Transaction Management");
+        setSize(600, 500);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLayout(new BorderLayout());
 
-	/**
-	 * Create the frame.
-	 */
-	public TransactionFrame() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+        //input panel
+        JPanel inputPanel = new JPanel(new GridLayout(5, 2, 10, 10));
 
-	}
+        inputPanel.add(new JLabel("Transaction ID:"));
+        txtTransactionID = new JTextField();
+        inputPanel.add(txtTransactionID);
 
+        inputPanel.add(new JLabel("Quantity:"));
+        txtQuantity = new JTextField();
+        inputPanel.add(txtQuantity);
+
+        inputPanel.add(new JLabel("Select Product:"));
+        cmbProduct = new JComboBox<>();
+        for (Product p : SalesSystem.getProducts()) {
+            cmbProduct.addItem(p.getProductID() + " - " + p.getName());
+        }
+        inputPanel.add(cmbProduct);
+
+        inputPanel.add(new JLabel("Select Account:"));
+        cmbAccount = new JComboBox<>();
+        for (Account a : SalesSystem.getAccounts().values()) {
+            cmbAccount.addItem(a.getAccountID());
+        }
+        inputPanel.add(cmbAccount);
+
+        add(inputPanel, BorderLayout.NORTH);
+
+        // --- Center Panel: Text Area ---
+        txtDisplay = new JTextArea();
+        txtDisplay.setEditable(false);
+        add(new JScrollPane(txtDisplay), BorderLayout.CENTER);
+
+        // --- Bottom Panel: Buttons ---
+        JPanel buttonPanel = new JPanel();
+
+        btnAdd = new JButton("Add Transaction");
+        btnDisplay = new JButton("Display Transactions");
+        btnCalculate = new JButton("Calculate Total Revenue");
+
+        buttonPanel.add(btnAdd);
+        buttonPanel.add(btnDisplay);
+        buttonPanel.add(btnCalculate);
+
+        add(buttonPanel, BorderLayout.SOUTH);
+
+        //Key Event: Press Enter to calculate product total
+        txtQuantity.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    int quantity = Integer.parseInt(txtQuantity.getText());
+                    int selectedIndex = cmbProduct.getSelectedIndex();
+                    Product selectedProduct = SalesSystem.getProducts().get(selectedIndex);
+                    double total = selectedProduct.getPrice() * quantity;
+                    JOptionPane.showMessageDialog(null,
+                            "Total: " + total + " for " + selectedProduct.getName());
+                }
+            }
+        });
+
+        // Add Transaction
+        btnAdd.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    String tID = txtTransactionID.getText();
+                    int quantity = Integer.parseInt(txtQuantity.getText());
+                    int productIndex = cmbProduct.getSelectedIndex();
+                    int accountIndex = cmbAccount.getSelectedIndex();
+
+                    Product product = SalesSystem.getProducts().get(productIndex);
+                    Account account = (Account) SalesSystem.getAccounts()
+                            .values().toArray()[accountIndex];
+
+                    Transaction t = new Transaction(tID, product, account, quantity, LocalDate.now());
+                    SalesSystem.addTransaction(t);
+                    t.applyTransaction();
+
+                    JOptionPane.showMessageDialog(null, "Transaction added successfully!");
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+                }
+            }
+        });
+
+        //displaying transactions
+        btnDisplay.addActionListener(e -> {
+            StringBuilder sb = new StringBuilder();
+            for (Transaction t : SalesSystem.getTransactions()) {
+                sb.append(t.getTransactionID()).append(" - ")
+                        .append(t.getProducts().getName()).append(" - ")
+                        .append(t.getQuantity()).append(" pcs - ")
+                        .append(t.getAccount().getAccountID()).append("\\n");
+            }
+            txtDisplay.setText(sb.toString());
+        });
+
+        // --- Calculate Total Revenue ---
+        btnCalculate.addActionListener(e -> {
+            double revenue = SalesSystem.calculateTotalRevenue();
+            JOptionPane.showMessageDialog(null, "Total Revenue: " + revenue);
+        });
+
+        setVisible(true);
+    }
 }
+
