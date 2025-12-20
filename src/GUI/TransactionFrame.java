@@ -53,12 +53,12 @@ public class TransactionFrame extends JFrame {
 
         add(inputPanel, BorderLayout.NORTH);
 
-        // --- Center Panel: Text Area ---
+        //Center Panel: Text Area 
         txtDisplay = new JTextArea();
         txtDisplay.setEditable(false);
         add(new JScrollPane(txtDisplay), BorderLayout.CENTER);
 
-        // --- Bottom Panel: Buttons ---
+        //Bottom Panel: Buttons
         JPanel buttonPanel = new JPanel();
 
         btnAdd = new JButton("Add Transaction");
@@ -123,7 +123,7 @@ public class TransactionFrame extends JFrame {
             txtDisplay.setText(sb.toString());
         });
 
-        // --- Calculate Total Revenue ---
+        //Calculate Total Revenue
         btnCalculate.addActionListener(e -> {
             double revenue = SalesSystem.calculateTotalRevenue();
             JOptionPane.showMessageDialog(null, "Total Revenue: " + revenue);

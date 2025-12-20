@@ -28,7 +28,7 @@ public class MainMenuFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainFrame frame = new MainFrame();
+					MainMenuFrame frame = new MainMenuFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +40,7 @@ public class MainMenuFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainFrame() {
+	public MainMenuFrame() {
 		setTitle("Main Menu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 543, 417);

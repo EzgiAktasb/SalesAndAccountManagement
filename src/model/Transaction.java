@@ -38,5 +38,23 @@ public class Transaction{
         System.out.println("Total Amount: " + calculateTransactionAmount());
         System.out.println("---------------------------------------");
     }
+
+	public String getTransactionID() {
+		
+		return transactionID;
+	}
+
+	public Product getProducts() {
+		
+		return product;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
 }
 
