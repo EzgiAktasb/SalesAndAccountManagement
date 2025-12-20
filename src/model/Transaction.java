@@ -32,7 +32,7 @@ public class Transaction{
     public void displayTransaction() {
         System.out.println("Transaction ID: " + transactionID);
         System.out.println("Product: " + product.getName());
-        System.out.println("Account: " + account.getAccountID()());
+        System.out.println("Account: " + account.getAccountID());
         System.out.println("Quantity: " + quantity);
         System.out.println("Date: " + date);
         System.out.println("Total Amount: " + calculateTransactionAmount());
