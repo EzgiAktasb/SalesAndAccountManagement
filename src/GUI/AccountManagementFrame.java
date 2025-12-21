@@ -20,7 +20,6 @@ public class AccountManagementFrame extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        /* -------- TOP PANEL (Inputs) -------- */
         JPanel panelTop = new JPanel(new GridLayout(5, 2, 5, 5));
 
         cmbAccountType = new JComboBox<>(new String[]{
@@ -49,12 +48,12 @@ public class AccountManagementFrame extends JFrame {
 
         add(panelTop, BorderLayout.NORTH);
 
-        /* -------- CENTER (Output) -------- */
+        
         txtOutput = new JTextArea();
         txtOutput.setEditable(false);
         add(new JScrollPane(txtOutput), BorderLayout.CENTER);
 
-        /* -------- BOTTOM (Buttons) -------- */
+     
         JPanel panelBottom = new JPanel(new GridLayout(1, 4, 5, 5));
 
         JButton btnAdd = new JButton("Add Account");
