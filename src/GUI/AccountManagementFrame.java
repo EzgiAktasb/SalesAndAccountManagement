@@ -1,13 +1,13 @@
-package gui;
+package GUI;
 
 import javax.swing.*;
 import java.awt.*;
 import SystemAndMain.SalesSystem;
-import model.Account;
-import model.BankAccount;
-import model.CashAccount;
-import model.SalesAccount;
 
+import Accounts.BankAccount;
+import Accounts.CashAccount;
+import Accounts.SalesAccount;
+import model.Account;
 public class AccountManagementFrame extends JFrame {
 
     private JComboBox<String> cmbAccountType;
@@ -18,40 +18,42 @@ public class AccountManagementFrame extends JFrame {
         setTitle("Account Management");
         setSize(600, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLayout(new BorderLayout());
+        getContentPane().setLayout(new BorderLayout());
 
         JPanel panelTop = new JPanel(new GridLayout(5, 2, 5, 5));
 
-        cmbAccountType = new JComboBox<>(new String[]{
-                "CashAccount", "BankAccount", "SalesAccount"
-        });
+        JComboBox<String> cmbAccountType = new JComboBox<>();
+
+        cmbAccountType.addItem("CashAccount");
+        cmbAccountType.addItem("BankAccount");
+        cmbAccountType.addItem("SalesAccount");
 
         txtAccountID = new JTextField();
         txtBalance = new JTextField();
         txtBankName = new JTextField();
         txtIBAN = new JTextField();
 
-        panelTop.add(new JLabel("Account Type:"));
+        panelTop.add(new JLabel("   Account Type:"));
         panelTop.add(cmbAccountType);
 
-        panelTop.add(new JLabel("Account ID:"));
+        panelTop.add(new JLabel("   Account ID:"));
         panelTop.add(txtAccountID);
 
-        panelTop.add(new JLabel("Balance:"));
+        panelTop.add(new JLabel("   Balance:"));
         panelTop.add(txtBalance);
 
-        panelTop.add(new JLabel("Bank Name:"));
+        panelTop.add(new JLabel("   Bank Name:"));
         panelTop.add(txtBankName);
 
-        panelTop.add(new JLabel("IBAN:"));
+        panelTop.add(new JLabel("   IBAN:"));
         panelTop.add(txtIBAN);
 
-        add(panelTop, BorderLayout.NORTH);
+        getContentPane().add(panelTop, BorderLayout.NORTH);
 
         
         txtOutput = new JTextArea();
         txtOutput.setEditable(false);
-        add(new JScrollPane(txtOutput), BorderLayout.CENTER);
+        getContentPane().add(new JScrollPane(txtOutput), BorderLayout.CENTER);
 
      
         JPanel panelBottom = new JPanel(new GridLayout(1, 4, 5, 5));
@@ -66,7 +68,7 @@ public class AccountManagementFrame extends JFrame {
         panelBottom.add(btnDisplay);
         panelBottom.add(btnUpdate);
 
-        add(panelBottom, BorderLayout.SOUTH);
+        getContentPane().add(panelBottom, BorderLayout.SOUTH);
 
     
         btnAdd.addActionListener(e -> {
@@ -78,10 +80,10 @@ public class AccountManagementFrame extends JFrame {
                 Account account = null;
 
                 if (type.equals("CashAccount")) {
-                    account = new CashAccount(id, balance);
+                    account = new Accounts.CashAccount(id, balance);
                 } 
                 else if (type.equals("BankAccount")) {
-                    account = new BankAccount(
+                    account = new Accounts.BankAccount(
                             id, 
                             balance, 
                             txtBankName.getText(), 
@@ -89,7 +91,7 @@ public class AccountManagementFrame extends JFrame {
                     );
                 } 
                 else if (type.equals("SalesAccount")) {
-                    account = new SalesAccount(id, balance);
+                    account = new Accounts.SalesAccount(id, balance);
                 }
 
                 SalesSystem.addAccount(account);
@@ -129,4 +131,5 @@ public class AccountManagementFrame extends JFrame {
         });
     }
 }
+
 
