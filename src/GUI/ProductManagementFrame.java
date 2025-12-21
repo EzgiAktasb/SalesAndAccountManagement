@@ -1,5 +1,6 @@
 package GUI;
 import java.awt.EventQueue;
+
 import java.awt.TextArea;
 
 import javax.swing.JFrame;
@@ -12,7 +13,10 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollBar;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+import model.Product;
+import model.Transaction;
+import SystemAndMain.SalesSystem;
+import GUI.MainMenuFrame;
 public class ProductManagementFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -168,7 +172,7 @@ public class ProductManagementFrame extends JFrame {
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				MainMenuFrame.setVisible(true);
+			
 			}
 		});
 		btnNewButton_4.setBounds(215, 413, 88, 22);
@@ -182,3 +186,4 @@ public class ProductManagementFrame extends JFrame {
 
 	}
 }
+
