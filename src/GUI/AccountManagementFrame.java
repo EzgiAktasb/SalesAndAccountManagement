@@ -8,6 +8,7 @@ import Accounts.BankAccount;
 import Accounts.CashAccount;
 import Accounts.SalesAccount;
 import model.Account;
+
 public class AccountManagementFrame extends JFrame {
 
     private JComboBox<String> cmbAccountType;
@@ -22,8 +23,7 @@ public class AccountManagementFrame extends JFrame {
 
         JPanel panelTop = new JPanel(new GridLayout(5, 2, 5, 5));
 
-        JComboBox<String> cmbAccountType = new JComboBox<>();
-
+        cmbAccountType = new JComboBox<>();
         cmbAccountType.addItem("CashAccount");
         cmbAccountType.addItem("BankAccount");
         cmbAccountType.addItem("SalesAccount");
@@ -50,23 +50,23 @@ public class AccountManagementFrame extends JFrame {
 
         getContentPane().add(panelTop, BorderLayout.NORTH);
 
-        
         txtOutput = new JTextArea();
         txtOutput.setEditable(false);
         getContentPane().add(new JScrollPane(txtOutput), BorderLayout.CENTER);
 
-     
-        JPanel panelBottom = new JPanel(new GridLayout(1, 4, 5, 5));
+        JPanel panelBottom = new JPanel(new GridLayout(1, 5, 5, 5));
 
         JButton btnAdd = new JButton("Add Account");
         JButton btnDelete = new JButton("Delete Account");
         JButton btnDisplay = new JButton("Display Accounts");
         JButton btnUpdate = new JButton("Update Balance");
+        JButton btnNext = new JButton("Next");
 
         panelBottom.add(btnAdd);
         panelBottom.add(btnDelete);
         panelBottom.add(btnDisplay);
         panelBottom.add(btnUpdate);
+        panelBottom.add(btnNext);
 
         getContentPane().add(panelBottom, BorderLayout.SOUTH);
 
@@ -80,18 +80,18 @@ public class AccountManagementFrame extends JFrame {
                 Account account = null;
 
                 if (type.equals("CashAccount")) {
-                    account = new Accounts.CashAccount(id, balance);
+                    account = new CashAccount(id, balance);
                 } 
                 else if (type.equals("BankAccount")) {
-                    account = new Accounts.BankAccount(
-                            id, 
-                            balance, 
-                            txtBankName.getText(), 
+                    account = new BankAccount(
+                            id,
+                            balance,
+                            txtBankName.getText(),
                             txtIBAN.getText()
                     );
                 } 
                 else if (type.equals("SalesAccount")) {
-                    account = new Accounts.SalesAccount(id, balance);
+                    account = new SalesAccount(id, balance);
                 }
 
                 SalesSystem.addAccount(account);
@@ -101,6 +101,8 @@ public class AccountManagementFrame extends JFrame {
                 txtOutput.append("Error adding account!\n");
             }
         });
+
+   
         btnDelete.addActionListener(e -> {
             String id = txtAccountID.getText();
             boolean deleted = SalesSystem.deleteAccount(id);
@@ -110,6 +112,8 @@ public class AccountManagementFrame extends JFrame {
             else
                 txtOutput.append("Account not found!\n");
         });
+
+
         btnDisplay.addActionListener(e -> {
             txtOutput.setText("");
             for (Account a : SalesSystem.getAccounts().values()) {
@@ -117,6 +121,7 @@ public class AccountManagementFrame extends JFrame {
             }
         });
 
+     
         btnUpdate.addActionListener(e -> {
             try {
                 String id = txtAccountID.getText();
@@ -129,7 +134,11 @@ public class AccountManagementFrame extends JFrame {
                 txtOutput.append("Error updating balance!\n");
             }
         });
+
+        // NEXT → ProductManagementFrame
+        btnNext.addActionListener(e -> {
+            dispose(); // bu frame kapanır
+            new ProductManagementFrame().setVisible(true);
+        });
     }
 }
-
-
