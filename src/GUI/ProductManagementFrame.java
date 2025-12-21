@@ -1,3 +1,4 @@
+
 package GUI;
 import java.awt.EventQueue;
 
@@ -168,16 +169,6 @@ public class ProductManagementFrame extends JFrame {
 		lblNewLabel_5.setBounds(215, 86, 263, 14);
 		contentPane.add(lblNewLabel_5);
 		
-		JButton btnNewButton_4 = new JButton("EXIT");
-		btnNewButton_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			
-			}
-		});
-		btnNewButton_4.setBounds(215, 413, 88, 22);
-		contentPane.add(btnNewButton_4);
-		
 		JLabel lblNewLabel_6 = new JLabel("***To exit this window, press EXIT.");
 		lblNewLabel_6.setBounds(215, 111, 236, 14);
 		contentPane.add(lblNewLabel_6);
@@ -186,4 +177,3 @@ public class ProductManagementFrame extends JFrame {
 
 	}
 }
-
