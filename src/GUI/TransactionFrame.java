@@ -12,15 +12,38 @@ import java.awt.event.*;
 import java.time.LocalDate;
 
 public class TransactionFrame extends JFrame {
-    private SalesSystem salesSystem;
+
 
     private JTextField txtTransactionID, txtQuantity;
     private JComboBox<String> cmbProduct, cmbAccount;
     private JTextArea txtDisplay;
     private JButton btnAdd, btnDisplay, btnCalculate;
 
-    public TransactionFrame(SalesSystem system) {
-        this.salesSystem = system;
+    
+    
+    
+    
+    public TransactionFrame(SalesSystem salesSystem, JTextField txtTransactionID, JTextField txtQuantity,
+			JComboBox<String> cmbProduct, JComboBox<String> cmbAccount, JTextArea txtDisplay, JButton btnAdd,
+			JButton btnDisplay, JButton btnCalculate) throws HeadlessException {
+		super();
+	
+		this.txtTransactionID = txtTransactionID;
+		this.txtQuantity = txtQuantity;
+		this.cmbProduct = cmbProduct;
+		this.cmbAccount = cmbAccount;
+		this.txtDisplay = txtDisplay;
+		this.btnAdd = btnAdd;
+		this.btnDisplay = btnDisplay;
+		this.btnCalculate = btnCalculate;
+	}
+
+
+
+
+
+	public TransactionFrame() {
+ 
         setTitle("Transaction Management");
         setSize(600, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -129,7 +152,14 @@ public class TransactionFrame extends JFrame {
             JOptionPane.showMessageDialog(null, "Total Revenue: " + revenue);
         });
 
-        setVisible(true);
+    
     }
+
+
+
+
+
+	
 }
+
 
