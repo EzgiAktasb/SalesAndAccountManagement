@@ -1,3 +1,5 @@
+package GUI;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,7 +11,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class MainFrame extends JFrame {
+public class MainMenuFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -17,7 +19,6 @@ public class MainFrame extends JFrame {
 	AccountManagementFrame amf = new AccountManagementFrame();
 	TransactionFrame tf = new TransactionFrame();
 	ProductManagementFrame pmf = new ProductManagementFrame();
-	DashboardFrame df = new DashboardFrame();
 
 	/**
 	 * Launch the application.
@@ -26,7 +27,7 @@ public class MainFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainFrame frame = new MainFrame();
+					MainMenuFrame frame = new MainMenuFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,7 +39,7 @@ public class MainFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainFrame() {
+	public MainMenuFrame() {
 		setTitle("Main Menu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 543, 417);
@@ -100,14 +101,7 @@ public class MainFrame extends JFrame {
 		btnNewButton_3.setBounds(218, 295, 88, 22);
 		contentPane.add(btnNewButton_3);
 		
-		JButton btnNewButton_4 = new JButton("Dashboard");
-		btnNewButton_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				df.setVisible(true);
-			}
-		});
-		btnNewButton_4.setBounds(191, 231, 145, 30);
-		contentPane.add(btnNewButton_4);
+		
 
 	}
 }
