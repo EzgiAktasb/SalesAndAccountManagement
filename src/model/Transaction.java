@@ -29,14 +29,10 @@ public class Transaction{
         product.reduceStock(quantity);
     }
 
-    public void displayTransaction() {
-        System.out.println("Transaction ID: " + transactionID);
-        System.out.println("Product: " + product.getName());
-        System.out.println("Account: " + account.getAccountID());
-        System.out.println("Quantity: " + quantity);
-        System.out.println("Date: " + date);
-        System.out.println("Total Amount: " + calculateTransactionAmount());
-        System.out.println("---------------------------------------");
+    public String displayTransaction() {
+    	String temp = "Transaction ID: " + transactionID + "\n"+ "Product: " + product.getName()+ "\n"+"Account: " + account.getAccountID()+ "\n"+"Quantity: " + quantity+ "\n" + "Date: " + date + "\n" + "Total Amount: " + calculateTransactionAmount()+ "\n"+"---------------------------------------\n";
+    	
+    	return temp;
     }
 
 	public String getTransactionID() {
@@ -57,4 +53,6 @@ public class Transaction{
 		return account;
 	}
 }
+
+
 
