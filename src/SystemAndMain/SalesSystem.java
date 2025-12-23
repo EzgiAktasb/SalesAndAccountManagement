@@ -48,10 +48,13 @@ public class SalesSystem {
         accounts.put(a.getAccountID(), a);
     }
 
-    public static void displayAllProducts() {
+    public static String displayAllProducts() {
+    	String temp = "";
         for (Product p : product) {
-            p.displayProduct();
+        	
+            temp += p.displayProduct() + "\n";
         }
+        return temp;
     }
 
     public static void displayAllTransactions() {
@@ -68,7 +71,7 @@ public class SalesSystem {
 
     public static Product searchProductById(String id) {
         for (Product p : product) {
-            if (p.getProductID().equals(id)) {
+            if (p.getProductID().equalsIgnoreCase(id)) {
                 return p;
             }
         }
@@ -102,4 +105,6 @@ public class SalesSystem {
         }
     }
 }
+
+
 
